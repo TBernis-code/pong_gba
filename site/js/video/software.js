@@ -1,6 +1,6 @@
 function MemoryAligned16(size) {
 	this.buffer = new Uint16Array(size >> 1);
-};
+}
 
 MemoryAligned16.prototype.load8 = function(offset) {
 	return (this.loadU8(offset) << 24) >> 24;
@@ -51,7 +51,7 @@ MemoryAligned16.prototype.invalidatePage = function(address) {};
 function GameBoyAdvanceVRAM(size) {
 	MemoryAligned16.call(this, size);
 	this.vram = this.buffer;
-};
+}
 
 GameBoyAdvanceVRAM.prototype = Object.create(MemoryAligned16.prototype);
 
@@ -71,7 +71,7 @@ function GameBoyAdvanceOAM(size) {
 			d: 1
 		};
 	}
-};
+}
 
 GameBoyAdvanceOAM.prototype = Object.create(MemoryAligned16.prototype);
 
@@ -173,7 +173,7 @@ function GameBoyAdvancePalette() {
 		this.colors[0] // Backdrop
 	];
 	this.blendY = 1;
-};
+}
 
 GameBoyAdvancePalette.prototype.overwrite = function(memory) {
 	for (var i = 0; i < 512; ++i) {
@@ -379,7 +379,7 @@ function GameBoyAdvanceOBJ(oam, index) {
 	this.pushPixel = GameBoyAdvanceSoftwareRenderer.pushPixel;
 	this.cachedWidth = 8;
 	this.cachedHeight = 8;
-};
+}
 
 GameBoyAdvanceOBJ.prototype.drawScanlineNormal = function(backing, y, yOff, start, end) {
 	var video = this.oam.video;
@@ -595,7 +595,7 @@ function GameBoyAdvanceOBJLayer(video, index) {
 	this.priority = index;
 	this.enabled = false;
 	this.objwin = 0;
-};
+}
 
 GameBoyAdvanceOBJLayer.prototype.drawScanline = function(backing, layer, start, end) {
 	var y = this.video.vcount;
@@ -682,7 +682,7 @@ function GameBoyAdvanceSoftwareRenderer() {
 			}
 		}
 	})(this);
-};
+}
 
 GameBoyAdvanceSoftwareRenderer.prototype.clear = function(mmu) {
 	this.palette = new GameBoyAdvancePalette();
@@ -734,7 +734,7 @@ GameBoyAdvanceSoftwareRenderer.prototype.clear = function(mmu) {
 			enabled: [ false, false, false, false, false, true ],
 			special: 0
 		});
-	};
+	}
 
 	// BLDCNT
 	this.target1 = new Array(5);
